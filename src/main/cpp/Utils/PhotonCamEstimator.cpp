@@ -8,7 +8,9 @@ std::vector <std::optional<photon::EstimatedRobotPose>> PhotonCamEstimator::Upda
     m_results = photon::PhotonCamera::GetAllUnreadResults();
 
     for (auto result : m_results){
-        m_robotPositions.push_back(photon::PhotonPoseEstimator::Update(result));
+        if(result.HasTargets()){
+            m_robotPositions.push_back(photon::PhotonPoseEstimator::Update(result));
+        }
     }
 
     return m_robotPositions;
