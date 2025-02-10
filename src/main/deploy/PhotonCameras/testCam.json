@@ -2,7 +2,6 @@
 {
     "CameraName": "testCam", 
     "PoseStrategy": "LOWEST_AMBIGUITY",
-    "PortNumber": 0,
 
     "PositionOffset": {
         "X": 0,
