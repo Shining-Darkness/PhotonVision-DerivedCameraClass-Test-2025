@@ -4,6 +4,10 @@
 
 #pragma once
 
+#include <Utils/JsonCamera.h>
+#include <frc/Filesystem.h>
+#include <filesystem>
+
 #include <optional>
 
 #include <frc/TimedRobot.h>

@@ -4,13 +4,13 @@
     "PoseStrategy": "LOWEST_AMBIGUITY",
 
     "PositionOffset": {
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
+        "X": 1,
+        "Y": 2,
+        "Z": 3,
 
-        "Pitch": 0,
-        "Roll": 0,
-        "Yaw": 0
+        "Pitch": 4,
+        "Roll": 5,
+        "Yaw": 6
     }
 
 }

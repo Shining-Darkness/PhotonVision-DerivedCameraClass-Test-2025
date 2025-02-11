@@ -97,6 +97,8 @@
     "xstring": "cpp",
     "xtr1common": "cpp",
     "xutility": "cpp",
-    "*.inc": "cpp"
-  }
+    "*.inc": "cpp",
+    "xhash": "cpp"
+  },
+  "wpilib.selectDefaultSimulateExtension": true
 }
