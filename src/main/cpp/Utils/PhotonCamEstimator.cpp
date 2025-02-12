@@ -5,6 +5,9 @@ PhotonCamEstimator::PhotonCamEstimator(std::string name, frc::AprilTagFieldLayou
 }
 
 std::vector <std::optional<photon::EstimatedRobotPose>> PhotonCamEstimator::Update(){
+
+    m_robotPositions.clear();
+    
     m_results = photon::PhotonCamera::GetAllUnreadResults();
 
     for (auto result : m_results){
