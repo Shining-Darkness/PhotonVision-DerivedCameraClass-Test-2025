@@ -22,13 +22,15 @@ std::unordered_map <std::string, photon::PoseStrategy> strategyMap = {{"AVERAGE_
     //Grab the json file data from the filestream
     camStream >> jsonFile;
 
+
+    wpi::json cameraPositionJson = jsonFile.at("PositionOffset");
     //load the transform 3d for the camera from the json file. (Assume that length units are in inches and rotational units are in degrees)
-    frc::Transform3d cameraOffset = frc::Transform3d(units::length::inch_t(jsonFile.at("PositionOffset").at("X")),
-                                                     units::length::inch_t(jsonFile.at("PositionOffset").at("Y")),
-                                                     units::length::inch_t(jsonFile.at("PositionOffset").at("Z")),
-                                    frc::Rotation3d(units::angle::degree_t(jsonFile.at("PositionOffset").at("Yaw")),
-                                                    units::angle::degree_t(jsonFile.at("PositionOffset").at("Pitch")),
-                                                    units::angle::degree_t(jsonFile.at("PositionOffset").at("Roll"))));                 
+    frc::Transform3d cameraOffset = frc::Transform3d(units::length::inch_t(cameraPositionJson.at("X")),
+                                                     units::length::inch_t(cameraPositionJson.at("Y")),
+                                                     units::length::inch_t(cameraPositionJson.at("Z")),
+                                    frc::Rotation3d(units::angle::degree_t(cameraPositionJson.at("Yaw")),
+                                                    units::angle::degree_t(cameraPositionJson.at("Pitch")),
+                                                    units::angle::degree_t(cameraPositionJson.at("Roll"))));                 
 
     return PhotonCamEstimator(jsonFile.at("CameraName"), aprilTags, strategyMap[jsonFile.at("PoseStrategy")], cameraOffset);
     
