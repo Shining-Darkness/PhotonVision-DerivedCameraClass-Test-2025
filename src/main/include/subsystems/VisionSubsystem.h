@@ -20,6 +20,9 @@ class VisionSubsystem : frc2::SubsystemBase {
     
         std::vector<photon::EstimatedRobotPose> GetVisionEstimate();
 
+        //Eigen::Matrix<double, 3, 1> GetEstimationStdDevs(photon::EstimatedRobotPose pose); //Implement StdDev later
+
     private:
         std::vector<PhotonCamEstimator> m_photonCameras;
+        std::vector<photon::EstimatedRobotPose> m_visionEst;
 };
