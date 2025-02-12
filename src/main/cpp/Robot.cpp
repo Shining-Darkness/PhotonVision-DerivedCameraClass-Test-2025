@@ -66,14 +66,7 @@ void Robot::TestPeriodic() {}
 /**
  * This function is called once when the robot is first started up.
  */
-void Robot::SimulationInit() {
-
-  std::filesystem::path cameraPath = frc::filesystem::GetDeployDirectory().append("\\PhotonCameras\\");
-
-  JsonCamera::LoadCamerasFromFolder(cameraPath, frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField));
-
-
-}
+void Robot::SimulationInit() {}
 
 /**
  * This function is called periodically whilst in simulation.

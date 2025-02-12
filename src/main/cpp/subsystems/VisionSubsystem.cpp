@@ -1,13 +1,20 @@
 #include <subsystems/VisionSubsystem.h>
 
-VisionSubsystem::VisionSubsystem() : exampleCamEstimator("exampleName",
-                                                         frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField),
-                                                         photon::PoseStrategy::MULTI_TAG_PNP_ON_COPROCESSOR,
-                                                         frc::Transform3d()){
-    
+VisionSubsystem::VisionSubsystem(){
+    std::filesystem::path cameraPath = frc::filesystem::GetDeployDirectory().append("\\PhotonCameras\\");
+    m_photonCameras = JsonCamera::LoadCamerasFromFolder(cameraPath, frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField));
     
 
 }
+
+std::vector<photon::EstimatedRobotPose> VisionSubsystem::GetVisionEstimate(){
+
+    for(auto camera : m_photonCameras){
+        
+    }    
+
+}
+
 
 /*void VisionSubsystem::GrabPoseTest(){ //wip not finished
 

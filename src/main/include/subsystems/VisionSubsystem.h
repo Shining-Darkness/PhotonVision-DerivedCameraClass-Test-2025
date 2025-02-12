@@ -1,5 +1,12 @@
 #pragma once
 
+#include <Utils/JsonCamera.h>
+#include <frc/Filesystem.h>
+#include <filesystem>
+
+#include <string>
+#include <vector>
+
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 
@@ -10,9 +17,9 @@
 class VisionSubsystem : frc2::SubsystemBase {
     public:
         VisionSubsystem();
-
-        //void GrabPoseTest();
+    
+        std::vector<photon::EstimatedRobotPose> GetVisionEstimate();
 
     private:
-        PhotonCamEstimator exampleCamEstimator;
+        std::vector<PhotonCamEstimator> m_photonCameras;
 };
