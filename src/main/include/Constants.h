@@ -27,12 +27,26 @@
 
 namespace OperatorConstants {
 
-inline constexpr int kDriverControllerPort = 0;
+    inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
 
 namespace VisionConstants {
-/* Implement StdDev later
-inline const Eigen::Matrix<double, 3, 1> kSingleTagStdDevs{4, 4, 8};
-inline const Eigen::Matrix<double, 3, 1> kMultiTagStdDevs{0.5, 0.5, 1};*/
+
+    //Max pose ambiguity (for single tag)
+    constexpr double kMaxSingleTagAmbiguity = 0.2;
+    constexpr double kMaxMultiTagAmbiguity = 0.3;
+
+    //Max distance (for single tag)
+    constexpr units::inch_t kMaxSingleTagDistance = 150_in;
+    constexpr units::inch_t kMaxMultiTagDistance = 200_in;
+  
+    //Default standard deviations 
+    constexpr wpi::array<double, 3U> kSingleTagStdDevs {3.75, 3.75, 7.5};
+    constexpr wpi::array<double, 3U> kMultiTagStdDevs {0.75, 0.75, 1.5};
+
+    //Standard deviations scale factor (scaled as: distance^2 * stdDevsScaleFactor)
+    constexpr double kStdDevsScaleFactor = 1.0 / 30.0;
+
+    
 }

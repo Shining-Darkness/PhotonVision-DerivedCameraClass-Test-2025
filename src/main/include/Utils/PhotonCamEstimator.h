@@ -16,7 +16,6 @@ class PhotonCamEstimator : public photon::PhotonCamera, public photon::PhotonPos
         PhotonCamEstimator(std::string name, frc::AprilTagFieldLayout aprilTags, photon::PoseStrategy poseStrategy, frc::Transform3d robotToCam);
 
         std::vector <std::optional<photon::EstimatedRobotPose>> Update();
-        
 
     private:
         std::vector <photon::PhotonPipelineResult> m_results;
