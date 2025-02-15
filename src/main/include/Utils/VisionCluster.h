@@ -5,11 +5,10 @@
 #include <Utils/JsonCamera.h>
 #include <frc/Filesystem.h>
 #include <filesystem>
+#include <wpi/array.h>
 
 #include <string>
 #include <vector>
-
-#include <numeric>
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>

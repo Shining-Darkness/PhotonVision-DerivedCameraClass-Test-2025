@@ -20,7 +20,7 @@ std::vector<VisionPoseResult> VisionCluster::GetVisionEstimates(){
                 auto filteredEstimate = FilterVisionEstimate(position);
 
                 if(filteredEstimate.has_value()){
-                    filteredEstimate.value().estimatedPose;
+                    m_visionEst.push_back(filteredEstimate.value());
                 }
             }
         }
@@ -51,22 +51,29 @@ std::optional<VisionPoseResult> VisionCluster::FilterVisionEstimate(std::optiona
         avgAmbiguity /= numTargets;
 
         if(numTargets > 1 && avgAmbiguity <= kMaxMultiTagAmbiguity && avgDistance <= kMaxMultiTagDistance){
-            stdDevs = kMultiTagStdDevs; 
+            stdDevs = kMultiTagStdDevs;
+
+            // Scale standard deviations
+            double scaleFactor = ((avgDistance.value() * avgDistance.value()) * (kStdDevsScaleFactorLimit/(kMaxMultiTagDistance.value())));
+            for(double& stdDev : stdDevs){
+                stdDev *= scaleFactor;
+            }
         }
         else if(numTargets == 1 && avgAmbiguity <= kMaxSingleTagAmbiguity && avgDistance <= kMaxSingleTagDistance){
             stdDevs = kSingleTagStdDevs;
+
+            // Scale standard deviations
+            double scaleFactor = ((avgDistance.value() * avgDistance.value()) * (kStdDevsScaleFactorLimit/(kMaxSingleTagDistance.value())));
+            for(double& stdDev : stdDevs){
+                stdDev *= scaleFactor;
+            }
         }
         else {
             // Discard pose estimation otherwise
             return std::nullopt;
         }
 
-        // Scale standard deviations by average tag distance squared
-        double scaleFactor = 1.0 + (avgDistance.value() * avgDistance.value() * kStdDevsScaleFactor);
-        for(double& stdDev : stdDevs){
-            stdDev *= scaleFactor;
-        }
-            return VisionPoseResult {poseVal, stdDevs};
+        return VisionPoseResult {poseVal, stdDevs};
     }
 
     return std::nullopt;

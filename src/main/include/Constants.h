@@ -45,8 +45,8 @@ namespace VisionConstants {
     constexpr wpi::array<double, 3U> kSingleTagStdDevs {3.75, 3.75, 7.5};
     constexpr wpi::array<double, 3U> kMultiTagStdDevs {0.75, 0.75, 1.5};
 
-    //Standard deviations scale factor (scaled as: distance^2 * stdDevsScaleFactor)
-    constexpr double kStdDevsScaleFactor = 1.0 / 30.0;
+    //Standard deviations scale factor limit (scaled as: distance^2 * kStdDevsScaleFactorLimit/(MaxTagDistance^2))
+    constexpr double kStdDevsScaleFactorLimit = 1.0 / 30.0;
 
     
 }
