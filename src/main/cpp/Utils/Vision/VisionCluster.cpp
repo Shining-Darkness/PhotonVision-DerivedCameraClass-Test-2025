@@ -1,4 +1,4 @@
-#include <Utils/VisionCluster.h>
+#include "Utils/Vision/VisionCluster.h"
 
 using namespace VisionConstants;
 
@@ -37,10 +37,15 @@ std::optional<VisionPoseResult> VisionCluster::FilterVisionEstimate(std::optiona
         wpi::array<double, 3> stdDevs = {std::numeric_limits<double>::max(), std::numeric_limits<double>::max(), std::numeric_limits<double>::max()};
 
         //Create a variable to hold the average distance and ambiguity
-        units::inch_t avgDistance;
-        double avgAmbiguity;
+        units::inch_t avgDistance = 0_in;
+        double avgAmbiguity = 0;
                         
         unsigned int numTargets = poseVal.targetsUsed.size();
+
+        //extra statement to ensure we never divide by zero. Shouldnt be a problem as positions shouldnt be estimated without any targets.
+        if (numTargets == 0) {
+            return std::nullopt;
+        }
 
         for(auto target : poseVal.targetsUsed){
             avgDistance += target.GetBestCameraToTarget().Translation().ToTranslation2d().Norm();

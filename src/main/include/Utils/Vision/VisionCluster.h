@@ -2,7 +2,6 @@
 
 #include <units/length.h>
 
-#include <Utils/JsonCamera.h>
 #include <frc/Filesystem.h>
 #include <filesystem>
 #include <wpi/array.h>
@@ -15,7 +14,8 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 
-#include <Utils/PhotonCamEstimator.h>
+#include "Utils/Vision/JsonCamera.h"
+#include "Utils/Vision/PhotonCamEstimator.h"
 
 #include <Constants.h>
 
